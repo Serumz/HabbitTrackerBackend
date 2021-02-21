@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 
 const app = express();
-// const port = process.env.port || 5000;
+const port = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
@@ -19,14 +19,10 @@ connection.once('open', () => {
 
 const habbitsRouter = require('./routes/habbit');
 const usersRouter = require('./routes/user');
+app.post('/', (req, res) => { return res.status(200).json({msg : "IT WORKS!" })});
 app.use('/habbits', habbitsRouter);
 app.use('/users', usersRouter);
 
-// app.listen(port, () => {
-//     console.log('Server is running on port: '+ port);
-// });
-var server_port = process.env.YOUR_PORT || process.env.PORT || 80;
-var server_host = process.env.YOUR_HOST || '0.0.0.0';
-server.listen(server_port, server_host, function() {
-    console.log('Listening on port %d', server_port);
+app.listen(port, () => {
+    console.log('Server is running on port: '+ port);
 });
